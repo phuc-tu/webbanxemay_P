@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['dangnhap'])) {
+    header('Location: ../../login.php'); // hoặc ../login.php tùy vị trí
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
+<?php
     $sql_sua_sp = "SELECT * FROM tbl_sanpham WHERE id_sanpham='$_GET[idsanpham]' LIMIT 1 ";
     $query_sua_sp = mysqli_query($mysqli,$sql_sua_sp);
 ?>

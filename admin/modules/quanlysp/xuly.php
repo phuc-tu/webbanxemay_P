@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['dangnhap'])) {
+    header('Location: ../../login.php'); // hoặc ../login.php tùy vị trí
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
 <?php 
 include('../../config/config.php');
 

@@ -1,4 +1,20 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
+    header('Location: ../../login.php');
+    exit();
+}
+?>
+<?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
+    header('Location: ../../login.php');
+    exit();
+}
+?>
+<!-- CODE BUSINESS Ở SAU -->
+<!-- CODE chức năng ở dưới -->
+<?php
     $sql_lietke_danhmucsp = "SELECT * FROM tbl_danhmuc ORDER BY thutu DESC";
     $query_lietke_danhmucsp = mysqli_query($mysqli,$sql_lietke_danhmucsp);
 ?>

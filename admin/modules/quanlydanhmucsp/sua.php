@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
+    header('Location: ../../login.php');
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
+<?php
     $sql_sua_danhmucsp = "SELECT * FROM tbl_danhmuc WHERE id_danhmuc='$_GET[iddanhmuc]' LIMIT 1 ";
     $query_sua_danhmucsp = mysqli_query($mysqli,$sql_sua_danhmucsp);
 ?>

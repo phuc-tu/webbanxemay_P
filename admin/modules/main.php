@@ -46,7 +46,10 @@
         }elseif($tam=='quanlyweb' && $query=='capnhat'){
             include("modules/thongtinweb/quanly.php");
 
-        }elseif($tam=='quanlythongbao' && $query=='thongbao'){
+        }elseif($tam == 'quanlitk' && $query == 'lietke') {
+    include("modules/quanlitk/lietke.php");
+}
+        elseif($tam=='quanlythongbao' && $query=='thongbao'){
             include("modules/quanlythongbao/lietke.php");
 
         }else{

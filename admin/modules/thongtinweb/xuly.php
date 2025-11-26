@@ -1,4 +1,14 @@
-<?php 
+<?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
+    header('Location: ../../login.php');
+    exit();
+}
+if ($_SESSION['admin_status'] != 0) {
+    echo 'Bạn không có quyền truy cập chức năng này!';
+    exit();
+}
+
 include('../../config/config.php');
 
 $thongtinlienhe = $_POST['thongtinlienhe'];

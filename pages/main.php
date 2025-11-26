@@ -47,7 +47,10 @@ if (isset($_GET['quanly'])) {
                     include("main/sanpham.php");
                 }elseif($tam=='thanhtoan'){
                     include("main/thanhtoan.php");
-                }elseif($tam=='timkiem'){
+                }elseif($tam=='timkiem_nangcao'){
+    include("main/timkiem_nangcao.php");
+}
+                elseif($tam=='timkiem'){
                     include("main/timkiem.php");
                 }elseif($tam=='camon'){
                     include("main/camon.php");

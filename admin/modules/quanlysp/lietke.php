@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap'])) {
+    header('Location: ../../login.php'); // hoặc ../login.php tùy vị trí
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
+<?php
     $sql_lietke_sp = "SELECT * FROM tbl_sanpham,tbl_danhmuc WHERE tbl_sanpham.id_danhmuc=tbl_danhmuc.id_danhmuc ORDER BY id_sanpham DESC";
     $query_lietke_sp = mysqli_query($mysqli,$sql_lietke_sp);
 ?>

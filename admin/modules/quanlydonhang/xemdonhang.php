@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap'])) {
+    header('Location: ../../login.php'); // hoặc ../login.php tùy vị trí file này
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
+<?php
     $sql_lietke_dh = "SELECT * FROM tbl_cart_details,tbl_sanpham 
     WHERE tbl_cart_details.id_sanpham = tbl_sanpham.id_sanpham 
     AND tbl_cart_details.code_cart='$_GET[code]'

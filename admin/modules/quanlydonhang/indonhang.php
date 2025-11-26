@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap'])) {
+    header('Location: ../../login.php'); // hoặc ../login.php tùy vị trí file này
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
+<?php
     include('../../config/config.php');
     require('../../../tfpdf/tfpdf.php');
 

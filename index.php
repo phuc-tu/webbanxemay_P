@@ -23,6 +23,7 @@
             include("pages/slider.php");
             include("pages/main.php");
             include("pages/footer.php");
+           include("pages/main/chat_AI.php");
             ?>
         </div>
     </div>

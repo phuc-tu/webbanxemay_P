@@ -1,3 +1,11 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
+    header('Location: ../../login.php');
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
 <?php 
 include('../../config/config.php');
 

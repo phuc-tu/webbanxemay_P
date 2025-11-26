@@ -1,3 +1,11 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap'])) {
+    header('Location: ../../login.php'); // hoặc ../login.php tùy vị trí file này
+    exit();
+}
+?>
+<!-- CODE chức năng ở dưới -->
 <h3>Danh sách đơn hàng</h3>
 <?php
     $sql_lietke_dh = "SELECT * FROM tbl_cart,tbl_dangky WHERE tbl_cart.id_khachhang = tbl_dangky.id_dangky ORDER BY tbl_cart.id_cart DESC";

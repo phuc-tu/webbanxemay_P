@@ -1,4 +1,15 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
+    header('Location: ../../login.php'); // sửa đúng path nếu file nằm sâu hơn
+    exit();
+}
+if ($_SESSION['admin_status'] != 0) {
+    echo 'Bạn không có quyền truy cập chức năng này!';
+    exit();
+}
+?>
+<?php
     $sql_lienhe = "SELECT * FROM tbl_lienhe WHERE id_lienhe=1 ";
     $query_lienhe = mysqli_query($mysqli,$sql_lienhe);
 ?>
