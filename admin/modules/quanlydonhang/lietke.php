@@ -43,7 +43,7 @@ if (!isset($_SESSION['dangnhap'])) {
         </td>
         <td><?php echo $row['cart_date'] ?></td>
         <td>
-            <a href="index.php?action=donhang&query=xemdonhang&code=<?php echo $row['code_cart'] ?>">Xem đơn hàng</a> 
+            <a href="index.php?action=quanlydonhang&query=xemdonhang&code=<?php echo $row['code_cart'] ?>">Xem đơn hàng</a> 
         </td>
         <td>
             <a href="modules/quanlydonhang/indonhang.php?code=<?php echo $row['code_cart'] ?>">In đơn hàng</a>

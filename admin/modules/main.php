@@ -1,59 +1,68 @@
 <div class="clear"></div>
 <div class="main">
-    <?php
-        if(isset($_GET['action']) && $_GET['query']){
-            $tam = $_GET['action'];
-            $query = $_GET['query'];
-        }
-        else{
-            $tam='';
-            $query='';
-        }
-        if($tam=='quanlydanhmucsanpham' && $query=='them'){
-            include("modules/quanlydanhmucsp/them.php");
-            include("modules/quanlydanhmucsp/lietke.php");
+<?php
+    if(isset($_GET['action']) && $_GET['query']){
+        $tam   = $_GET['action'];
+        $query = $_GET['query'];
+    } else {
+        $tam   = '';
+        $query = '';
+    }
 
-        }elseif($tam=='quanlydanhmucsanpham' && $query=='sua'){
-            include("modules/quanlydanhmucsp/sua.php");
+    // ====== DANH MỤC SẢN PHẨM ======
+    if($tam=='quanlydanhmucsp' && $query=='them'){
+        include("modules/quanlydanhmucsp/them.php");
+        include("modules/quanlydanhmucsp/lietke.php");
 
-        }elseif($tam=='quanlysp' && $query=='them'){
-            include("modules/quanlysp/them.php");
+    }elseif($tam=='quanlydanhmucsp' && $query=='sua'){
+        include("modules/quanlydanhmucsp/sua.php");
 
-            include("modules/quanlysp/lietke.php");
-        }elseif($tam=='quanlysp' && $query=='sua'){
-            include("modules/quanlysp/sua.php");
+    // ====== SẢN PHẨM ======
+    }elseif($tam=='quanlysp' && $query=='them'){
+        include("modules/quanlysp/them.php");
+        include("modules/quanlysp/lietke.php");
 
-        }elseif($tam=='quanlydonhang' && $query=='lietke'){
-            include("modules/quanlydonhang/lietke.php");
+    }elseif($tam=='quanlysp' && $query=='sua'){
+        include("modules/quanlysp/sua.php");
 
-        }elseif($tam=='donhang' && $query=='xemdonhang'){
-            include("modules/quanlydonhang/xemdonhang.php");
+    // ====== ĐƠN HÀNG ======
+    }elseif($tam=='quanlydonhang' && $query=='lietke'){
+        include("modules/quanlydonhang/lietke.php");
 
-        }elseif($tam=='quanlydanhmucbaiviet' && $query=='them'){
-            include("modules/quanlydanhmucbaiviet/them.php");
-            include("modules/quanlydanhmucbaiviet/lietke.php");
+    }elseif($tam=='donhang' && $query=='xemdonhang'){
+        include("modules/quanlydonhang/xemdonhang.php");
 
-        }elseif($tam=='quanlydanhmucbaiviet' && $query=='sua'){
-            include("modules/quanlydanhmucbaiviet/sua.php");
+    // ====== DANH MỤC BÀI VIẾT ======
+    }elseif($tam=='quanlydanhmucbaiviet' && $query=='them'){
+        include("modules/quanlydanhmucbaiviet/them.php");
+        include("modules/quanlydanhmucbaiviet/lietke.php");
 
-        }elseif($tam=='quanlybaiviet' && $query=='them'){
-            include("modules/quanlybaiviet/them.php");
-            include("modules/quanlybaiviet/lietke.php");
+    }elseif($tam=='quanlydanhmucbaiviet' && $query=='sua'){
+        include("modules/quanlydanhmucbaiviet/sua.php");
 
-        }elseif($tam=='quanlybaiviet' && $query=='sua'){
-            include("modules/quanlybaiviet/sua.php");
+    // ====== BÀI VIẾT ======
+    }elseif($tam=='quanlybaiviet' && $query=='them'){
+        include("modules/quanlybaiviet/them.php");
+        include("modules/quanlybaiviet/lietke.php");
 
-        }elseif($tam=='quanlyweb' && $query=='capnhat'){
-            include("modules/thongtinweb/quanly.php");
+    }elseif($tam=='quanlybaiviet' && $query=='sua'){
+        include("modules/quanlybaiviet/sua.php");
 
-        }elseif($tam == 'quanlitk' && $query == 'lietke') {
-    include("modules/quanlitk/lietke.php");
-}
-        elseif($tam=='quanlythongbao' && $query=='thongbao'){
-            include("modules/quanlythongbao/lietke.php");
+    // ====== THÔNG TIN WEBSITE ======
+    }elseif($tam=='quanlyweb' && $query=='capnhat'){
+        include("modules/thongtinweb/quanly.php");
 
-        }else{
-            include("modules/dashboard.php");
-        }
-    ?>
+    // ====== QUẢN LÝ TÀI KHOẢN ======
+    }elseif($tam == 'quanlitk' && $query == 'lietke'){
+        include("modules/quanlitk/lietke.php");
+
+    // ====== THÔNG BÁO ======
+    }elseif($tam=='quanlythongbao' && $query=='thongbao'){
+        include("modules/quanlythongbao/lietke.php");
+
+    // ====== DASHBOARD MẶC ĐỊNH ======
+    }else{
+        include("modules/dashboard.php");
+    }
+?>
 </div>

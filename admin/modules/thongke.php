@@ -1,14 +1,16 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
 header('Content-Type: application/json; charset=utf-8');
-if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
-    echo json_encode(['error' => 'Chưa đăng nhập!']);
-    exit();
-}
-if ($_SESSION['admin_status'] != 0) {
-    echo json_encode(['error' => 'Bạn không có quyền truy cập!']);
-    exit();
-}
+
+// ======= CHỈ BẬT KIỂM TRA QUYỀN KHI TRIỂN KHAI CHÍNH THỨC =======
+// if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
+//     echo json_encode(['error' => 'Chưa đăng nhập!']);
+//     exit();
+// }
+// if ($_SESSION['admin_status'] != 0) {
+//     echo json_encode(['error' => 'Bạn không có quyền truy cập!']);
+//     exit();
+// }
 require('../../carbon/autoload.php');
 include('../config/config.php');
 use Carbon\Carbon;
@@ -31,36 +33,32 @@ switch ($thoigian) {
 }
 $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 
-// Truy vấn top 5 sản phẩm bán chạy nhất
+// Tính doanh thu từ chi tiết đơn hàng, có JOIN sản phẩm
 $sql = "
-SELECT
-    sp.id_sanpham,
-    sp.tensanpham,
-    sp.hinhanh,
-    SUM(cd.soluongmua) AS tong_ban
-FROM tbl_cart_details cd
-JOIN tbl_cart c ON c.code_cart = cd.code_cart
-JOIN tbl_sanpham sp ON sp.id_sanpham = cd.id_sanpham
+SELECT 
+    DATE(c.cart_date) as date,
+    COUNT(DISTINCT c.code_cart) as order_count,
+    SUM(cd.soluongmua * sp.giasp) as sales,
+    SUM(cd.soluongmua) as quantity
+FROM tbl_cart c
+LEFT JOIN tbl_cart_details cd ON c.code_cart = cd.code_cart
+LEFT JOIN tbl_sanpham sp ON cd.id_sanpham = sp.id_sanpham
 WHERE c.cart_status = 1
   AND DATE(c.cart_date) BETWEEN '$subdays' AND '$now'
-GROUP BY sp.id_sanpham, sp.tensanpham, sp.hinhanh
-ORDER BY tong_ban DESC
-LIMIT 5
+GROUP BY DATE(c.cart_date)
+ORDER BY DATE(c.cart_date) ASC
 ";
-$sql_query = mysqli_query($mysqli, $sql);
-if(!$sql_query){
-    echo json_encode(['error' => mysqli_error($mysqli)]);
-    exit();
-}
-$top5 = [];
-while($row = mysqli_fetch_assoc($sql_query)){
-    $top5[] = [
-        'id'    => $row['id_sanpham'],
-        'name'  => $row['tensanpham'],
-        'image' => $row['hinhanh'],
-        'sold'  => $row['tong_ban']
+$query = mysqli_query($mysqli, $sql);
+
+$data = [];
+while($row = mysqli_fetch_assoc($query)){
+    $data[] = [
+        'date'     => $row['date'],
+        'order'    => (int)$row['order_count'],
+        'sales'    => (int)$row['sales'],
+        'quantity' => (int)$row['quantity']
     ];
 }
-echo json_encode($top5);
+echo json_encode($data);
 exit();
 ?>

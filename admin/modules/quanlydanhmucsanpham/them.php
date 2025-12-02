@@ -8,7 +8,7 @@ if (!isset($_SESSION['dangnhap']) || !isset($_SESSION['admin_status'])) {
 <!-- CODE chức năng ở dưới -->
 <h3>Thêm danh mục</h3>
 <table border="1" width="50%" style="border-collapse:collapse;" >
-    <form method="POST" action="modules/quanlydanhmucsp/xuly.php" >
+    <form method="POST" action="modules/quanlydanhmucsanpham/xuly.php" >
     <tr>
         <td>Tên danh mục</td>
         <td><input type="text" name="tendanhmuc"></td>
